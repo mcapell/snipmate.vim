@@ -5,11 +5,13 @@ snippet imp
 	import ${1:module}
 # Module Docstring
 snippet docs
-	'''
-	File: ${1:`Filename('$1.py', 'foo.py')`}
-	Author: ${2:`g:snips_author`}
-	Description: ${3}
-	'''
+	"""
+	.. module:: ${1:`Filename('$1.py', 'foo.py')`}
+	    :platform: Unix, Windows
+	    :synopsis: ${2:basic description of the module.}
+	.. moduleauthor:: ${3:`g:snips_author`}
+	"""
+	${4}
 snippet wh
 	while ${1:condition}:
 		${2:# code...}
@@ -19,23 +21,45 @@ snippet for
 # New Class
 snippet cl
 	class ${1:ClassName}(${2:object}):
-		"""${3:docstring for $1}"""
-		def __init__(self, ${4:arg}):
-			${5:super($1, self).__init__()}
-			self.$4 = $4
-			${6}
+	    """${3:Brief description.} #"{
+		.. note::
+			${4:Important notes.}
+		"""
+		
+		def __init__(self, ${5:arg}):
+			${6:super($1, self).__init__()}
+			self.$5 = $5
+			${7}
 # New Function
 snippet def
 	def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):
-		"""${3:docstring for $1}"""
-		${4:pass}
+		"""${3:2-4 word description.}
+   		
+		${4:Here should be a full explanation of the method, but CBA right now.}
+
+		Arguments:
+			$2 (${5:type}): ${6:Argument description.}
+
+        """
+		
+		${7:pass}
+
 snippet deff
 	def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):
 		${3}
 # New Method
 snippet defs
 	def ${1:mname}(self, ${2:arg}):
-		${3:pass}
+		"""${3:2-4 word description.}
+   		
+		${4:Here should be a full explanation of the method, but CBA right now.}
+
+		Arguments:
+			$2 (${5:type}): ${6:Argument description.}
+
+        """
+
+		${7:pass}
 # New Property
 snippet property
 	def ${1:foo}():
